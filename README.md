@@ -1,6 +1,12 @@
-## react-brick
+# react-brick
 
 Bundle your components as standalone widgets!
+
+## Demo
+
+http://react-brick.surge.sh/
+
+If all goes well, you should see 2 (clickable) buttons and an image that loads after 1 second.
 
 ## Status
 
