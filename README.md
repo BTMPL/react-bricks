@@ -38,7 +38,7 @@ set BRICK=YourComponentName && yarn run build:brick
 
 Your brick is now built in the `dist` folder. 
 
-To test it, ran the folder via a http server and make sure to add the JavaScript bundle and target element to your HTML.
+To test it, run the folder via a http server and make sure to add the JavaScript bundle and target element to your HTML.
 
 ### Why ...
 
@@ -50,9 +50,9 @@ HTML attributes are all transformed to lower-case, React needs `camelCase`, this
 
 Using custom components, according to the spec:
 
-> The name of a custom element must contain a dash (-). So <x-tags>, <my-element>, and <my-awesome-app> are all valid names, while <tabs> and <foo_bar> are not. This requirement is so the HTML parser can distinguish custom elements from regular elements. It also ensures forward compatibility when new tags are added to HTML.
+> The name of a custom element must contain a dash (-). So &lt;x-tags&gt;, &lt;my-element&gt;, and &lt;my-awesome-app&gt; are all valid names, while &lt;tabs&gt; and &lt;foo_bar&gt; are not. This requirement is so the HTML parser can distinguish custom elements from regular elements. It also ensures forward compatibility when new tags are added to HTML.
 
-> Custom elements cannot be self-closing because HTML only allows a few elements to be self-closing. Always write a closing tag (<app-drawer></app-drawer>).
+> Custom elements cannot be self-closing because HTML only allows a few elements to be self-closing. Always write a closing tag (&lt;app-drawer&gt;&lt;/app-drawer&gt;).
 
 #### My function passed as prop does not work.
 
