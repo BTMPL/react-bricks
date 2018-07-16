@@ -61,3 +61,7 @@ Right now only `on*` props are evaluated as functions
 #### Do I have to declare `propTypes`?
 
 Only if you want your components to react to attribute changes.
+
+#### Browser support?
+
+I've added a polyfill for WebComponents support in Edge. There's also a small adapter that makes the babel-transpiled classes work as components registration.
