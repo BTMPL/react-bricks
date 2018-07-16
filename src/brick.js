@@ -51,6 +51,9 @@ class InitBrick extends HTMLElement {
   }
 
   static get observedAttributes() {
+    /**
+     * TODO: Need to create a map that both this and `parseAttribute` can use to track changes.
+     */
     return Component.propTypes ? Object.keys(Component.propTypes) : [];
   }  
 
