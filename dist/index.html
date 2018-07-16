@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <style>
+      button.myButton {
+        background: #d3d3d3;
+        padding: 15px;
+        border: 0;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <MyButton id="root" class="myButton" on-click="(e) => alert(e.target.innerHTML)">Hello world!</MyButton>
+    <MyButton id="root" class="myButton" on-click="(e) => alert('Hello!')">Hello</MyButton>
+    <br /><br />
+    <MyImage width="458" height="354" placeholder="Loading ..." src="https://picsum.photos/458/354"></MyImage>
+    
+    <script src="./brick.js"></script>
+    <script src="./MyImage.js"></script>
+    <script src="./MyButton.js"></script>
+  </body>
+</html>
