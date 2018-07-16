@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "react-dom": "^16.4.1",
+    "prop-types": "*"
   },
   "devDependencies": {
     "babel-loader": "^7.1.5",

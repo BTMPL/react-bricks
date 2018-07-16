@@ -11,15 +11,18 @@
         cursor: pointer;
       }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.0.2/custom-elements-es5-adapter.js"></script>
+    <script src="./brick.js"></script>
+    <script src="./MyButton.js"></script>
+    <script src="./MyImage.js"></script>
   </head>
   <body>
-    <MyButton id="root" class="myButton" on-click="(e) => alert(e.target.innerHTML)">Hello world!</MyButton>
-    <MyButton id="root" class="myButton" on-click="(e) => alert('Hello!')">Hello</MyButton>
+    <my-button id="root" class="myButton" on-click="(e) => alert(e.target.innerHTML)">Hello world!</my-button>
+    <my-button id="root" class="myButton" on-click="(e) => alert('Hello!')">Hello</my-button>
     <br /><br />
-    <MyImage width="458" height="354" placeholder="Loading ..." src="https://picsum.photos/458/354"></MyImage>
+    <my-image width="458" height="354" placeholder="Loading ..." src="https://picsum.photos/458/354"></my-image>
     
-    <script src="./brick.js"></script>
-    <script src="./MyImage.js"></script>
-    <script src="./MyButton.js"></script>
+
+    
   </body>
 </html>

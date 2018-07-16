@@ -3,7 +3,7 @@ const webpack = require('webpack');
 module.exports = {
   mode: 'production',
   entry: {
-    vendor: ['react','react-dom'],
+    vendor: ['react','react-dom', 'prop-types'],
   },
   output: {
     filename: 'brick.js',

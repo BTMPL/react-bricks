@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Image extends React.Component {
 
@@ -36,5 +37,14 @@ class Image extends React.Component {
     
   }
 }
+
+Image.propTypes = {
+  width: PropTypes.number,
+  height: PropTypes.number,
+  alt: PropTypes.strig,
+  src: PropTypes.string,
+  className: PropTypes.string,
+  placeholder: PropTypes.string
+};
 
 export default Image;

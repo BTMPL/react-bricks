@@ -15,6 +15,11 @@ const toCamelCase = function(str) {
   );
 }
 
+const toSnakeCase = function(str) {
+  let name = str.substr(0, 1).toLowerCase() + str.substr(1);
+  return name.replace(/([A-Z])/g, (g) => `-${g[0].toLowerCase()}`);
+}
+
 const parseAttribute = function (name, value) {
   if (name === 'class') return {
     name: 'className',
@@ -33,13 +38,35 @@ const parseAttribute = function (name, value) {
   };
 }
 
+class InitBrick extends HTMLElement {
 
-Array.from(document.querySelectorAll(brickName)).map(target => {
-  const props = Array.from(target.attributes).reduce((accumulator, attribute) => {  
-    const { name, value } = parseAttribute(attribute.name, attribute.value);
-    accumulator[name] = value;
-    return accumulator;
-  }, {});
-  props.children = target.innerHTML;
-  render(React.createElement(Component, props), target);
-});
+  init() {
+    const props = Array.from(this.attributes).reduce((accumulator, attribute) => {  
+      const { name, value } = parseAttribute(attribute.name, attribute.value);
+      accumulator[name] = value;
+      return accumulator;
+    }, {});
+    props.children = this.innerHTML;
+    render(React.createElement(Component, props), this);     
+  }
+
+  static get observedAttributes() {
+    return Component.propTypes ? Object.keys(Component.propTypes) : [];
+  }  
+
+  connectedCallback() {    
+    /**
+     * Need to delay the execution for components that do have children in them.
+     * Otherwise we might end up with the callback called before the children are rendered
+     * and will not have any content in the component.
+     */
+    setTimeout(() => this.init());
+  }
+
+  attributeChangedCallback(attrName, oldValue, newVal) {
+    this.init.call(this);
+  }
+
+};
+
+window.customElements.define(toSnakeCase(brickName), InitBrick);
