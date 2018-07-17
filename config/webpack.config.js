@@ -15,6 +15,15 @@ const config = {
       {
         test: /\.js$/,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.png$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 1024
+          }        
+        }]
       }
     ]
   },

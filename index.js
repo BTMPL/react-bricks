@@ -1,4 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
+import Poll from './src/bricks/FrameworkPoll';
 
-render(<div>Hello world!</div>, document.getElementById('root'));
+render(<Poll />, document.getElementById('root'));

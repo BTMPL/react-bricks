@@ -3,31 +3,30 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <style type="text/plain" data-for="my-button">
-      .myButton {
-        background: #d3d3d3;
-        padding: 15px;
-        border: 0;
-        cursor: pointer;
+
+    <style type="text/plain" data-for="framework-poll">
+      @import 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css';
+
+      :host {
+        margin: 0;
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        text-align: left;
+        background-color: #fff;
       }
     </style>
 
-    <style type="text/plain" data-for="my-image">
-      img {
-        transform: scale(0.5);
-      }
-    </style>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.0.2/custom-elements-es5-adapter.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.0.2/webcomponents-bundle.js"></script>
+        
     
     <script src="./brick.js"></script>
-    <script src="./MyButton.js"></script>
-    <script src="./MyImage.js"></script>
+    <script src="./FrameworkPoll.js"></script>
   </head>
   <body>
-    <my-button id="root" class="myButton" on-click="(e) => alert(e.target.innerHTML)">Hello world!</my-button>
-    <my-button id="root" class="myButton" on-click="(e) => alert('Hello!')">Hello</my-button>
-    <br /><br />
-    <my-image width="458" height="354" placeholder="Loading ..." src="https://picsum.photos/458/354"></my-image>
+    <framework-poll />
   </body>
 </html>
