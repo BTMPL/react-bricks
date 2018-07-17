@@ -54,6 +54,11 @@ Using custom components, according to the spec:
 
 > Custom elements cannot be self-closing because HTML only allows a few elements to be self-closing. Always write a closing tag (&lt;app-drawer&gt;&lt;/app-drawer&gt;).
 
+#### `data-for` and `type` on style?
+
+The `data-for` is currently used to make sure the style is pulled into the shadow DOM and applied to the component.
+The `type` is set to `text/plain` in order for the browser to ignore the style, and not apply it to the custom components tag.
+
 #### My function passed as prop does not work.
 
 Right now only `on*` props are evaluated as functions

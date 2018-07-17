@@ -3,14 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <style>
-      button.myButton {
+    <style type="text/plain" data-for="my-button">
+      .myButton {
         background: #d3d3d3;
         padding: 15px;
         border: 0;
         cursor: pointer;
       }
     </style>
+
+    <style type="text/plain" data-for="my-image">
+      img {
+        transform: scale(0.5);
+      }
+    </style>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.0.2/custom-elements-es5-adapter.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.0.2/webcomponents-bundle.js"></script>
     
@@ -23,8 +29,5 @@
     <my-button id="root" class="myButton" on-click="(e) => alert('Hello!')">Hello</my-button>
     <br /><br />
     <my-image width="458" height="354" placeholder="Loading ..." src="https://picsum.photos/458/354"></my-image>
-    
-
-    
   </body>
 </html>

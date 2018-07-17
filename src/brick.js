@@ -47,7 +47,20 @@ class InitBrick extends HTMLElement {
       return accumulator;
     }, {});
     props.children = this.innerHTML;
-    render(React.createElement(Component, props), this);     
+    if (!this.shadow) {
+      this.shadow = this.attachShadow({
+        mode: 'open'
+      });
+    }
+    render(React.createElement(Component, props), this.shadow);     
+    this.shadow.querySelectorAll('style').forEach(oldStyle => {
+      oldStyle.parentNode.removeChild(oldStyle);
+    });    
+    document.querySelectorAll('style[data-for="' + this.tagName.toLowerCase() + '"]').forEach(style => {      
+      let shadowStyle = document.createElement( 'style' )
+      shadowStyle.innerHTML = style.innerText;
+      this.shadow.appendChild(shadowStyle);
+    });    
   }
 
   static get observedAttributes() {
@@ -56,6 +69,7 @@ class InitBrick extends HTMLElement {
      */
     return Component.propTypes ? Object.keys(Component.propTypes) : [];
   }  
+
 
   connectedCallback() {    
     /**
