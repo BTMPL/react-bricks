@@ -29,7 +29,7 @@ const config = {
   resolve: {
     modules: ['node_modules', 'src'],
     alias: {
-      '~brick': path.resolve(__dirname, `../src/bricks/${brickName}`)
+      '~brick': path.resolve(__dirname, `../examples/${brickName}`)
     }    
   }
 };

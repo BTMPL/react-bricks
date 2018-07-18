@@ -1,42 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
+import {
+  toSnakeCase,
+  parseAttribute
+} from './utils';
 
 import Component from '~brick/index.js';
-
-const toCamelCase = function(str) {
-  const find = /(\-\w)/g;
-  const convert =  function(matches){
-      return matches[1].toUpperCase();
-  };  
-
-  return str.replace(
-    find,
-    convert
-  );
-}
-
-const toSnakeCase = function(str) {
-  let name = str.substr(0, 1).toLowerCase() + str.substr(1);
-  return name.replace(/([A-Z])/g, (g) => `-${g[0].toLowerCase()}`);
-}
-
-const parseAttribute = function (name, value) {
-  if (name === 'class') return {
-    name: 'className',
-    value
-  };
-
-  if (name.substr(0, 3) === 'on-') {
-    return {
-      name: toCamelCase(name),
-      value: eval(value)
-    }
-  }
-  return {
-    name,
-    value
-  };
-}
 
 class InitBrick extends HTMLElement {
 
@@ -46,16 +15,19 @@ class InitBrick extends HTMLElement {
       accumulator[name] = value;
       return accumulator;
     }, {});
+
     props.children = this.innerHTML;
     if (!this.shadow) {
       this.shadow = this.attachShadow({
         mode: 'open'
       });
     }
+
     render(React.createElement(Component, props), this.shadow);     
     this.shadow.querySelectorAll('style').forEach(oldStyle => {
       oldStyle.parentNode.removeChild(oldStyle);
     });    
+
     document.querySelectorAll('style[data-for="' + this.tagName.toLowerCase() + '"]').forEach(style => {      
       let shadowStyle = document.createElement( 'style' )
       shadowStyle.innerHTML = style.innerText;
@@ -64,12 +36,8 @@ class InitBrick extends HTMLElement {
   }
 
   static get observedAttributes() {
-    /**
-     * TODO: Need to create a map that both this and `parseAttribute` can use to track changes.
-     */
-    return Component.propTypes ? Object.keys(Component.propTypes) : [];
+    return Component.propTypes ? Object.keys(Component.propTypes).map(toSnakeCase) : [];
   }  
-
 
   connectedCallback() {    
     /**

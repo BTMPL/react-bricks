@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <style type="text/plain" data-for="my-button">
+    <meta http-equiv="X-UA-Compatible" content="IE=8,9,11">
+    <style data-for="my-button">
       .myButton {
         background: #d3d3d3;
         padding: 15px;
@@ -16,8 +17,9 @@
       img {
         transform: scale(0.5);
       }
-    </style>    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.0.2/custom-elements-es5-adapter.js"></script>
+    </style> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.0.2/custom-elements-es5-adapter.js"></script>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.0.2/webcomponents-bundle.js"></script>
     
     <script src="./brick.js"></script>
@@ -25,8 +27,8 @@
     <script src="./MyImage.js"></script>
   </head>
   <body>
-    <my-button id="root" class="myButton" on-click="(e) => alert(e.target.innerHTML)">Hello world!</my-button>
-    <my-button id="root" class="myButton" on-click="(e) => alert('Hello!')">Hello</my-button>
+    <my-button class-name="myButton" on-click="(function (e) { alert(e.target.innerHTML)} )">Hello world!</my-button>
+    <my-button class-name="myButton" on-click="(function () { alert('Hello!') })">Hello</my-button>
     <br /><br />
     <my-image width="458" height="354" placeholder="Loading ..." src="https://picsum.photos/458/354"></my-image>
   </body>

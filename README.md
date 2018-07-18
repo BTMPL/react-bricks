@@ -17,7 +17,7 @@ This is a proof of concept and as such is not meant for serious usage!
 1. Create your component like a normal React component and save it as
 
 ```
-src/bricks/YourComponentName/index.js
+examples/bricks/YourComponentName/index.js
 ```
 
 2. Build the dll bundle
@@ -40,11 +40,21 @@ Your brick is now built in the `dist` folder.
 
 To test it, run the folder via a http server and make sure to add the JavaScript bundle and target element to your HTML.
 
+### Developing locally
+
+When developing it's useful to run webpack in watch mode and serve the app. Start one terminal window with:
+
+```bash
+set BRICK=MyButton && yarn run watch
+```
+
+and server the app in another:
+
+```bash
+yarn start
+```
+
 ### Why ...
-
-#### `on-click` not `onClick`?
-
-HTML attributes are all transformed to lower-case, React needs `camelCase`, this is a workaround.
 
 #### `my-button` and not `Button` or `MyButton`?
 
@@ -54,19 +64,39 @@ Using custom components, according to the spec:
 
 > Custom elements cannot be self-closing because HTML only allows a few elements to be self-closing. Always write a closing tag (&lt;app-drawer&gt;&lt;/app-drawer&gt;).
 
-#### `data-for` and `type` on style?
+#### `on-click` not `onClick`, `class-name` not `class`?
+
+The component attributes are passed to React component. React uses [specific names for HTML attributes](https://reactjs.org/docs/dom-elements.html).
+
+#### `data-for` on style?
 
 The `data-for` is currently used to make sure the style is pulled into the shadow DOM and applied to the component.
-The `type` is set to `text/plain` in order for the browser to ignore the style, and not apply it to the custom components tag.
 
 #### My function passed as prop does not work.
 
-Right now only `on*` props are evaluated as functions
+Right now only `on-` attributes are evaluated as functions. Also, make sure to actually pass a function, like you would do with React components:
+
+```html
+// GOOD:
+<my-button on-click="(e) => alert(e.target.innerHTML)">
+
+// BAD
+<my-button on-click="alert(this.innerHTML)">
+```
 
 #### Do I have to declare `propTypes`?
 
 Only if you want your components to react to attribute changes.
 
-#### Browser support?
+#### What's the browser support?
 
 I've added a polyfill for WebComponents support in Edge. There's also a small adapter that makes the babel-transpiled classes work as components registration.
+
+#### I've tried to pass the function but it breaks my component in Internet Explorer (IE 11)
+
+This is because IE lacks the support for arrow function. You can get around that by passing a normal function. Please note the extra set of parenthesis.
+
+```html
+// GOOD:
+<my-button on-click="(function (e) { alert(e.target.innerHTML); })">
+```
